@@ -1,0 +1,36 @@
+const clientId = "8ddcead0766a457abd8e7f42607140a1";
+const clientSecret = "4c81b3615eb94554b4ed074a6d8b64d3";
+
+let accessToken = "";
+
+export async function getToken() {
+  const response = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      Authorization: "Basic " + btoa(clientId + ":" + clientSecret),
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+
+  const data = await response.json();
+  accessToken = data.access_token;
+}
+
+export async function searchArtist(query) {
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const response = await fetch(
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+  return data.artists?.items?.[0];
+}

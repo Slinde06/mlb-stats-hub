@@ -6,7 +6,7 @@ import TimelinePage from "./pages/TimelinePage";
 function App() {
   return (
     <Router>
-      <nav>
+      <nav class="navigationbar">
         <Link to="/">Home</Link> | 
         <Link to="/compare">Compare</Link> | 
         <Link to="/timeline">Timeline</Link>
@@ -22,3 +22,4 @@ function App() {
 }
 
 export default App;
+

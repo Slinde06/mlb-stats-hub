@@ -1,39 +1,238 @@
-.App {
-  text-align: center;
+:root {
+  --bg: #022452;
+  --panel: #021a2e;
+  --accent: #ffffff;
+  --text: #ffffff;
+  --muted: #0d95d4;
+  --card-border: #0a356d;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, #1e7cff33, transparent 40%),
+    radial-gradient(circle at 80% 70%, #00b3ff33, transparent 40%),
+    #020617;
+  color: var(--text);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.main-container {
   min-height: 100vh;
+}
+
+.header-nav {
+  display: grid;
+  grid-template-columns: 20px 120px;
+  align-items: center;
+  width: min(2000px, 92%);
+  margin: 20px auto;
+  padding: 0 24px;
+  background: linear-gradient(135deg, #05478A, #0a63c7);
+  border-bottom: 1px solid #0a356d;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-menu a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 15px 0;
+}
+
+
+
+.main-content {
+  width: min(1120px, calc(100vw - 48px));
+  margin: 16px auto 0;
+}
+
+.landing-section {
+  display: grid;
+  gap: 20px;
+}
+
+.landing-content {
+  width: min(2000px, 92%);
+  margin: 0 auto;
+  background: linear-gradient(130deg, rgba(6, 54, 126, 0.685) 0%, rgba(5, 105, 255, 0.75) 100%);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px 24px;
+}
+
+.landing-content h1 {
+  margin: 5px 0 8px;
+}
+
+.landing-content p {
+  margin: 0 0 20px;
+  color: var(--muted);
+  max-width: 800px;
+}
+
+.stats-table {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.stats-table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.stats-table th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats-table td {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.stats-table tr:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.comparison-container {
+  width: min(2000px, 92%);
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.artist-card {
+  flex: 1 1 400px;
+  background: rgba(2, 26, 46, 0.9);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+}
+
+.artist-card:hover {
+}
+
+.artist-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.artist-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 12px;
 }
 
-.App-link {
-  color: #61dafb;
+.artist-info h2 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.artist-info p {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.info-block {
+  width: min(2000px, 92%);
+  margin: 0 auto;
+  background: rgba(2, 26, 46, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.info-block h2 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.info-block p {
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+@media (max-width: 760px) {
+  .header-nav {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding-bottom: 9px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .main-content {
+    width: calc(100vw - 20px);
+  }
+
+  .landing-content {
+    width: calc(100vw - 20px);
+    padding: 16px;
+  }
+
+  .comparison-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: calc(100vw - 20px);
+    padding: 0 16px;
+  }
+
+  .artist-card {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+  }
+
+  .artist-image {
+    height: 220px;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    padding: 12px 16px;
+  }
+
+  .info-block {
+    width: calc(100vw - 20px);
+    padding: 16px;
   }
 }
 

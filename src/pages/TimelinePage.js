@@ -1,10 +1,15 @@
+import React from 'react';
+
 function TimelinePage() {
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>Artist Timeline</h1>
-      <p>This page will show an artist timeline.</p>
-      <p>Work in progress.</p>
-    </div>
+    <section className="landing-section">
+      <div className="landing-content">
+        <h1>Welcome to Timeline</h1>
+        <p>
+          
+        </p>
+      </div>
+    </section>
   );
 }
 

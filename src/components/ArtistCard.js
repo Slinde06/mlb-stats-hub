@@ -1,12 +1,17 @@
+import React from 'react';
+
 function ArtistCard({ artist }) {
   return (
-    <div style={{border:"1px solid white", padding:"20px"}}>
-      <h2>{artist.name}</h2>
-      <p>Followers: {artist.followers.total}</p>
-      <p>Popularity: {artist.popularity}</p>
-      <img src={artist.images[0]?.url} width="200" />
+    <div className="artist-card">
+      <img src={artist.images[0]?.url} alt={artist.name} className="artist-image" />
+      <div className="artist-info">
+        <h2>{artist.name}</h2>
+        <p>Followers: {artist.followers.total.toLocaleString()}</p>
+        <p>Popularity: {artist.popularity}</p>
+      </div>
     </div>
   );
 }
 
 export default ArtistCard;
+

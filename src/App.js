@@ -1,25 +1,32 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import ComparisonPage from "./pages/ComparisonPage";
-import TimelinePage from "./pages/TimelinePage";
+import React from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Landing from './pages/LandingPage';
+import Comparison from './pages/ComparisonPage';
+import Timeline from './pages/TimelinePage';
 
 function App() {
   return (
-    <Router>
-      <nav class="navigationbar">
-        <Link to="/">Home</Link> | 
-        <Link to="/compare">Compare</Link> | 
-        <Link to="/timeline">Timeline</Link>
-      </nav>
+    <BrowserRouter>
+      <div className="main-container">
+        <header className="header-nav">
+          <nav className="nav-menu">
+            <Link to="/">LandingPage</Link>
+            <Link to="/comparison">Comparison</Link>
+            <Link to="/timeline">Timeline</Link>
+          </nav>
+        </header>
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/compare" element={<ComparisonPage />} />
-        <Route path="/timeline" element={<TimelinePage />} />
-      </Routes>
-    </Router>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/comparison" element={<Comparison />} />
+            <Route path="/timeline" element={<Timeline/>} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
-

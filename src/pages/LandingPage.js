@@ -1,219 +1,102 @@
-// import React from 'react';
-
-// function LandingPage() {
-//   const stats = {
-//     totalSongs: 1542,
-//     totalArtists: 89,
-//     avgPopularity: 67.4,
-//     avgDuration: '3:28'
-//   };
-
-//   return (
-//     <section className="landing-section">
-//       <div className="landing-content">
-//         <h1>Welcome to Landing</h1>
-//         <p>
-//           Your personalized music analytics dashboard
-//         </p>
-//         <div className="stats-table">
-//           <table>
-//             <thead>
-//               <tr>
-//                 <th>Metric</th>
-//                 <th>Value</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               <tr>
-//                 <td>Total Songs</td>
-//                 <td>{stats.totalSongs.toLocaleString()}</td>
-//               </tr>
-//               <tr>
-//                 <td>Total Artists</td>
-//                 <td>{stats.totalArtists.toLocaleString()}</td>
-//               </tr>
-//               <tr>
-//                 <td>Average Popularity</td>
-//                 <td>{stats.avgPopularity}%</td>
-//               </tr>
-//               <tr>
-//                 <td>Average Duration</td>
-//                 <td>{stats.avgDuration}</td>
-//               </tr>
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default LandingPage;
+import React, { useState, useEffect } from 'react';
+import { searchArtist, searchAlbum, searchPlaylist } from '../services/spotifyService.js';
 
 
-
-
-// import { useState } from "react";
-// import { searchArtist } from "../services/spotifyService";
-
-// function LandingPage() {
-//   const [query, setQuery] = useState("");
-//   const [artist, setArtist] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   const handleSearch = async () => {
-//     if (!query) return;
-
-//     setLoading(true);
-
-//     try {
-//       const data = await searchArtist(query);
-//       setArtist(data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-
-//     setLoading(false);
-//   };
-
-//   return (
-//     <div style={{ padding: "30px" }}>
-//       <h1>Spotify Artist Explorer</h1>
-
-//       <input
-//         type="text"
-//         placeholder="Enter artist name"
-//         value={query}
-//         onChange={(e) => setQuery(e.target.value)}
-//       />
-
-//       <button onClick={handleSearch}>Search</button>
-
-//       {loading && <p>Loading</p>}
-
-//       {artist && (
-//         <table border="1" style={{ marginTop: "20px", width: "600px" }}>
-//           <thead>
-//             <tr>
-//               <th>Artist Image</th>
-//               <th>Name</th>
-//               <th>Followers</th>
-//               <th>Popularity</th>
-//               <th>Genres</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             <tr>
-//               <td>
-//                 <img
-//                   src={artist.images?.[0]?.url}
-//                   width="100"
-//                   alt="artist"
-//                 />
-//               </td>
-
-//               <td>{artist.name}</td>
-
-//               <td>{artist?.followers?.total}</td>
-
-//               <td>{artist?.popularity}</td>
-
-//               <td>{artist?.genres?.join(", ")}</td>
-//             </tr>
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default LandingPage;
-
-import React from 'react';
-import { useState } from "react";
-import { searchArtist } from "../services/spotifyService";
+// import Footer from "../components/Footer";
+import logo from "../logo.svg";
 
 function LandingPage() {
-  const [query, setQuery] = useState("");
   const [artist, setArtist] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [album, setAlbum] = useState(null);
+  const [playlist, setPlaylist] = useState(null);
 
-  const handleSearch = async () => {
-    if (!query) return;
-
-    setLoading(true);
-
-    try {
-      const data = await searchArtist(query);
-      setArtist(data);
-    } catch (error) {
-      console.error(error);
-    }
-
-    setLoading(false);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const query = 'Miles Davis';
+        const art = await searchArtist(query);
+        const alb = await searchAlbum(query);
+        const pl = await searchPlaylist(query);
+        setArtist(art);
+        setAlbum(alb);
+        setPlaylist(pl);
+      } catch (error) {
+        console.error('Error fetching feature data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
+
     <section className="landing-section">
       <div className="landing-content">
-        <h1>Welcome to Landing</h1>
-        <p>
-          Your personalized music analytics dashboard
+        <h1>Welcome to Vibe</h1>
+        <p>Vibe is a personalized music analytics dashboard that gives you powerful insights into your listening world. You can compare artists side by side, track popularity trends over time, and explore your listening habits through comprehensive stats all in one place.
         </p>
+        <h2>Search any artist</h2>
+        <p>
+          Get instant insights on popularity, follower count, genres, and more here is a examples:
+        </p>
+<table className="api-data-table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Key Metrics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Artist</td>
+      <td>{artist?.name || 'N/A'}</td>
+      <td>
+        Followers: {artist?.followers?.total?.toLocaleString() || 'N/A'} | 
+        Popularity: {artist?.popularity || 'N/A'}
+      </td>
+    </tr>
+    <tr>
+      <td>Album</td>
+      <td>{album?.name || 'N/A'}</td>
+      <td>Tracks: {album?.total_tracks || 0}</td>
+    </tr>
+    <tr>
+      <td>Playlist</td>
+      <td>{playlist?.name || 'N/A'}</td>
+      <td>Followers: {playlist?.followers?.total?.toLocaleString() || 'N/A'}</td>
+    </tr>
+  </tbody>
+</table>
         <div className="stats-table">
           <table>
-            <div style={{ padding: "30px" }}>
-      <h1>Spotify Artist Explorer</h1>
-
-      <input
-        type="text"
-        placeholder="Enter artist name"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-
-      <button onClick={handleSearch}>Search</button>
-
-      {loading && <p>Loading</p>}
-
-      {artist && (
-        <table border="1" style={{ marginTop: "20px", width: "600px" }}>
-          <thead>
-            <tr>
-              <th>Artist Image</th>
-              <th>Name</th>
-              <th>Followers</th>
-              <th>Popularity</th>
-              <th>Genres</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-                <img
-                  src={artist.images?.[0]?.url}
-                  width="100"
-                  alt="artist"
-                />
-              </td>
-
-              <td>{artist.name}</td>
-
-              <td>{artist?.followers?.total}</td>
-
-              <td>{artist?.popularity}</td>
-
-              <td>{artist?.genres?.join(", ")}</td>
-            </tr>
-          </tbody>
-        </table>
-      )}
-    </div>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total Songs Analyzed</td>
+                <td>1,542</td>
+              </tr>
+              <tr>
+                <td>Unique Artists</td>
+                <td>89</td>
+              </tr>
+              <tr>
+                <th>Avg Popularity</th>
+                <td>67.4%</td>
+              </tr>
+              <tr>
+                <td>Avg Track Duration</td>
+                <td>3:28</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
+      {/* <Footer /> */}
     </section>
   );
 }

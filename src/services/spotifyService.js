@@ -34,3 +34,39 @@ export async function searchArtist(query) {
   const data = await response.json();
   return data.artists?.items?.[0];
 }
+
+export async function searchAlbum(query) {
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const response = await fetch(
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=album&limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+  return data.albums?.items?.[0];
+}
+
+export async function searchPlaylist(query) {
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const response = await fetch(
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=playlist&limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+  return data.playlists?.items?.[0];
+}

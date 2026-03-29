@@ -1,15 +1,18 @@
 import React from 'react';
 import './App.css';
+import vibeLogo from './vibelogo.png';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Landing from './pages/LandingPage';
 import Comparison from './pages/ComparisonPage';
 import Timeline from './pages/TimelinePage';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="main-container">
         <header className="header-nav">
+          <img src={vibeLogo} alt="Vibe Logo" className="navbar-logo" />
           <nav className="nav-menu">
             <Link to="/">LandingPage</Link>
             <Link to="/comparison">Comparison</Link>
@@ -24,6 +27,7 @@ function App() {
             <Route path="/timeline" element={<Timeline/>} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );

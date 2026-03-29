@@ -15,6 +15,7 @@ import {
 } from 'chart.js'; 
 import { Bar, Pie, Radar } from 'react-chartjs-2'; //grafieke
 import '../App.css'; //styling
+import axios from "axios";
 
 ChartJS.register(
   CategoryScale,
@@ -36,22 +37,48 @@ const ComparisonPage = () => {
   const [selectedVenue1, setSelectedVenue1] = useState(''); // die moet 1 wys 
   const [selectedVenue2, setSelectedVenue2] = useState(''); // hoekm wys 2 nie 
 
-  useEffect(() => {
-    setVenues(mockVenues); // Stel venues lys
-    setSelectedVenue1(mockVenues[0]?.name || ''); // dropdown goed
-    setSelectedVenue2(mockVenues[1]?.name || '');
-  }, []);
+  // useEffect(() => {
+  //   setVenues(mockVenues); // Stel venues lys
+  //   setSelectedVenue1(mockVenues[0]?.name || ''); // dropdown goed
+  //   setSelectedVenue2(mockVenues[1]?.name || '');
+  // }, []);
 
-  // opsomming van dataa
-  const mockVenues = [
-    { name: 'Yankee Stadium', attendance: 46337, temp: 72, windSpeed: 8 },
-    { name: 'Dodger Stadium', attendance: 52325, temp: 78, windSpeed: 5 },
-    { name: 'Fenway Park', attendance: 37939, temp: 68, windSpeed: 12 },
-    { name: 'Wrigley Field', attendance: 41349, temp: 70, windSpeed: 10 },
-    { name: 'Oracle Park', attendance: 41503, temp: 65, windSpeed: 15 },
-    { name: 'Citizens Bank Park', attendance: 42901, temp: 75, windSpeed: 7 },
-    { name: 'Truist Park', attendance: 41084, temp: 73, windSpeed: 6 }
-  ];
+  // // opsomming van dataa
+  // const mockVenues = [
+  //   { name: 'Yankee Stadium', attendance: 46337, temp: 72, windSpeed: 8 },
+  //   { name: 'Dodger Stadium', attendance: 52325, temp: 78, windSpeed: 5 },
+  //   { name: 'Fenway Park', attendance: 37939, temp: 68, windSpeed: 12 },
+  //   { name: 'Wrigley Field', attendance: 41349, temp: 70, windSpeed: 10 },
+  //   { name: 'Oracle Park', attendance: 41503, temp: 65, windSpeed: 15 },
+  //   { name: 'Citizens Bank Park', attendance: 42901, temp: 75, windSpeed: 7 },
+  //   { name: 'Truist Park', attendance: 41084, temp: 73, windSpeed: 6 }
+  // ];
+
+useEffect(() => {
+  const fetchTeams = async () => {
+    try {
+      const res = await axios.get(
+        "https://statsapi.mlb.com/api/v1/teams?sportId=1"
+      );
+
+      const teams = res.data.teams.map(team => ({
+        name: team.name,
+        attendance: Math.floor(Math.random() * 50000), // MLB API doesn’t give this directly
+        temp: Math.floor(Math.random() * 20) + 60,
+        windSpeed: Math.floor(Math.random() * 15)
+      }));
+
+      setVenues(teams);
+      setSelectedVenue1(teams[0]?.name || "");
+      setSelectedVenue2(teams[1]?.name || "");
+
+    } catch (error) {
+      console.error("Error fetching teams:", error);
+    }
+  };
+
+  fetchTeams();
+}, []);
 
   // kry die data 
   const venue1 = venues.find(v => v.name === selectedVenue1) || {};

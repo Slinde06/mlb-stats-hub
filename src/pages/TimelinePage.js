@@ -23,7 +23,6 @@ ChartJS.register(
   Legend,
 );
 
-// toets weer
 const mockHistoricalData = [
   { date: '04-10', attendance: 42350, temp: 68, windSpeed: 7, homeRuns: 12, strikeouts: 342 },
   { date: '04-11', attendance: 43820, temp: 71, windSpeed: 5, homeRuns: 15, strikeouts: 356 },
@@ -33,45 +32,48 @@ const mockHistoricalData = [
   { date: '04-15', attendance: 47560, temp: 73, windSpeed: 6, homeRuns: 16, strikeouts: 362 },
 ];
 
-const TimelinePage = () => {
+const TimelinePage = () => { // TimelinePage komponent
 
   const [historicalData, setHistoricalData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedProperty, setSelectedProperty] = useState('attendance');
 
-  // kleure
   const properties = [
-    { id: 'attendance', label: 'Attendance', unit: 'fans', color: 'rgb(255, 99, 133)' },
-    { id: 'temp', label: 'Temperature', unit: '°F', color: 'rgb(54, 163, 235)' },
-    { id: 'windSpeed', label: 'Wind Speed', unit: 'mph', color: 'rgb(255, 204, 86)' },
-    { id: 'homeRuns', label: 'Home Runs', unit: '', color: 'rgb(75, 192, 192)' },
-    { id: 'strikeouts', label: 'Strikeouts', unit: '', color: 'rgb(153, 102, 255)' },
+    { id: 'attendance', label: 'Attendance', unit: 'fans', color: 'rgba(255, 99, 132, 1)' },
+    { id: 'temp', label: 'Temperature', unit: '°F', color: 'rgba(54, 162, 235, 1)' },
+    { id: 'windSpeed', label: 'Wind Speed', unit: 'mph', color: 'rgba(255, 205, 86, 1)' },
+    { id: 'homeRuns', label: 'Home Runs', unit: '', color: 'rgba(75, 192, 192, 1)' },
+    { id: 'strikeouts', label: 'Strikeouts', unit: '', color: 'rgba(153, 102, 255, 1)' },
   ];
 
   useEffect(() => {
-    // Api asb gee datr
+
     const fetchData = async () => {
-      setLoading(true); 
-      await new Promise(resolve => setTimeout(resolve, 1000));   //ek kan delay add
-      setHistoricalData(mockHistoricalData); 
+      setLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setHistoricalData(mockHistoricalData);
       setLoading(false);
     };
 
     fetchData();
   }, []);
 
+
   const chartData = {
-    labels: historicalData.map(d => d.date), // Datums
+    labels: historicalData.map(d => d.date),
     datasets: properties.map(prop => ({
-      label: `${prop.label} (${prop.unit})`, // Naam
-      data: historicalData.map(d => d[prop.id]), //waardes
-      borderColor: prop.color, //kleur
-      backgroundColor: prop.color + '20', //bg
-      tension: 0.4, // lyn curvy
-      pointRadius: 6, // points
-      borderWidth: 3, // Dikt
+      label: `${prop.label} (${prop.unit})`,
+      data: historicalData.map(d => d[prop.id]),
+      borderColor: prop.color,
+      backgroundColor: prop.color + '20',
+      tension: 0.4,
+      pointRadius: 6,
+      pointHoverRadius: 8,
+      hidden: prop.id !== selectedProperty,
+      borderWidth: 3,
     })),
   };
+
 
   const options = {
     responsive: true,
@@ -105,7 +107,6 @@ const TimelinePage = () => {
     },
   };
 
-  //laai
   if (loading) {
     return (
       <div className="timeline-container">
@@ -120,7 +121,7 @@ const TimelinePage = () => {
       <h1>MLB Timeline Analytics</h1>
       <p>Interactive line charts showing 5 key MLB stadium properties over time</p>
 
-      <div className="property-selector">
+      <div className="property-selector"> {/* Dropdown */}
         <label>Display Metric:</label>
         <select value={selectedProperty} onChange={(e) => setSelectedProperty(e.target.value)}>
           {properties.map(prop => (
@@ -132,7 +133,7 @@ const TimelinePage = () => {
       </div>
 
       <div className="chart-container">
-        <Line data={chartData} options={options} />                                                                             {/*lyn*/}
+        <Line data={chartData} options={options} />
       </div>
 
       <div className="properties-grid">

@@ -41,7 +41,7 @@ const TimelinePage = () => { // TimelinePage komponent
   const [selectedProperty, setSelectedProperty] = useState('attendance');
 
   const properties = [
-    { id: 'attendance', label: 'Attendance', unit: 'fans', color: 'rgba(255, 99, 132, 1)' },
+    { id: 'attendance', label: 'Attendance', unit: 'fans', color: 'rgb(99, 255, 112)' },
     { id: 'temp', label: 'Temperature', unit: '°F', color: 'rgba(54, 162, 235, 1)' },
     { id: 'windSpeed', label: 'Wind Speed', unit: 'mph', color: 'rgba(255, 205, 86, 1)' },
     { id: 'homeRuns', label: 'Home Runs', unit: '', color: 'rgba(75, 192, 192, 1)' },
@@ -216,13 +216,6 @@ const TimelinePage = () => { // TimelinePage komponent
     </div>
   );
 };
-
-
-
-
-
-
-
 
 
 export default TimelinePage;

@@ -84,6 +84,7 @@ function LandingPage() {                    // LandingPage
 
       </div>
     </section>
+    
   );
 }
 

@@ -30,7 +30,7 @@ function App() { // Main App
           </Routes>
         </main>
 
-        <Footer /> {/* footer*/}
+        <Footer />
       </div>
     </BrowserRouter>
   );

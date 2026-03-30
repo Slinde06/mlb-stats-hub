@@ -205,6 +205,9 @@ useEffect(() => {
         </div>
       )}
 
+
+
+
       <div className="comparison-stats">                                                 {/* opsomming*/}
         <h3>Quick Stats</h3>
         
@@ -226,6 +229,8 @@ useEffect(() => {
 
         </div>
       </div>
+
+
 
     </div>
   );

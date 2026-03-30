@@ -1,4 +1,4 @@
-import React from 'react'; // Laai die React biblioteek
+import React from 'react'; // Laai die React
 import './App.css'; //CSS 
 import vibeLogo from './vibelogo.png'; //logo
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";

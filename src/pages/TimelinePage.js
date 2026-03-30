@@ -24,14 +24,16 @@ ChartJS.register(
   Legend,
 );
 
-// const mockHistoricalData = [
-//   { date: '04-10', attendance: 42350, temp: 68, windSpeed: 7, homeRuns: 12, strikeouts: 342 },
-//   { date: '04-11', attendance: 43820, temp: 71, windSpeed: 5, homeRuns: 15, strikeouts: 356 },
-//   { date: '04-12', attendance: 45120, temp: 74, windSpeed: 9, homeRuns: 11, strikeouts: 331 },
-//   { date: '04-13', attendance: 46280, temp: 69, windSpeed: 12, homeRuns: 18, strikeouts: 389 },
-//   { date: '04-14', attendance: 42930, temp: 67, windSpeed: 8, homeRuns: 14, strikeouts: 347 },
-//   { date: '04-15', attendance: 47560, temp: 73, windSpeed: 6, homeRuns: 16, strikeouts: 362 },
-// ];
+
+// test
+const mockHistoricalData = [
+  { date: '04-10', attendance: 42350, temp: 68, windSpeed: 7, homeRuns: 12, strikeouts: 342 },
+  { date: '04-11', attendance: 43820, temp: 71, windSpeed: 5, homeRuns: 15, strikeouts: 356 },
+  { date: '04-12', attendance: 45120, temp: 74, windSpeed: 9, homeRuns: 11, strikeouts: 331 },
+  { date: '04-13', attendance: 46280, temp: 69, windSpeed: 12, homeRuns: 18, strikeouts: 389 },
+  { date: '04-14', attendance: 42930, temp: 67, windSpeed: 8, homeRuns: 14, strikeouts: 347 },
+  { date: '04-15', attendance: 47560, temp: 73, windSpeed: 6, homeRuns: 16, strikeouts: 362 },
+];
 
 const TimelinePage = () => { // TimelinePage komponent
 
@@ -47,49 +49,59 @@ const TimelinePage = () => { // TimelinePage komponent
     { id: 'strikeouts', label: 'Strikeouts', unit: '', color: 'rgba(153, 102, 255, 1)' },
   ];
 
-  // useEffect(() => {
-
-  //   const fetchData = async () => {
-  //     setLoading(true);
-  //     await new Promise(resolve => setTimeout(resolve, 1000));
-  //     setHistoricalData(mockHistoricalData);
-  //     setLoading(false);
-  //   };
-
-  //   fetchData();
-  // }, []);
 
 
 
-useEffect(() => {
-  const fetchGames = async () => {
-    try {
+
+ useEffect(() => {
+    // Simulate async data load
+    const fetchData = async () => {
       setLoading(true);
-
-      const res = await axios.get(
-        "https://statsapi.mlb.com/api/v1/schedule?sportId=1"
-      );
-
-      const games = res.data.dates.slice(0, 6).map(date => ({
-        date: date.date,
-        attendance: Math.floor(Math.random() * 50000),
-        temp: Math.floor(Math.random() * 20) + 60,
-        windSpeed: Math.floor(Math.random() * 15),
-        homeRuns: Math.floor(Math.random() * 20),
-        strikeouts: Math.floor(Math.random() * 400),
-      }));
-
-      setHistoricalData(games);
+      setHistoricalData(mockHistoricalData);
       setLoading(false);
+    };
 
-    } catch (error) {
-      console.error("Error fetching schedule:", error);
-      setLoading(false);
-    }
-  };
+    fetchData();
+  }, []);
 
-  fetchGames();
-}, []);
+
+
+
+
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       setLoading(true);
+
+//       const res = await axios.get(
+//         "https://statsapi.mlb.com/api/v1/schedule?sportId=1"
+//       );
+
+//       const data = res.data.dates.slice(0, 6).map(date => ({
+//         date: date.date,
+//         attendance: Math.floor(Math.random() * 50000),
+//         temp: Math.floor(Math.random() * 20) + 60,
+//         windSpeed: Math.floor(Math.random() * 15),
+//         homeRuns: Math.floor(Math.random() * 20),
+//         strikeouts: Math.floor(Math.random() * 400),
+//       }));
+
+//       setHistoricalData(data);
+//       setLoading(false);
+
+//     } catch (error) {
+//       console.error("Error fetching schedule:", error);
+//       setLoading(false);
+//     }
+//   };
+
+//   fetchData();
+// }, []);
+
+
+
+
 
 
   const chartData = {
@@ -219,5 +231,13 @@ useEffect(() => {
     </div>
   );
 };
+
+
+
+
+
+
+
+
 
 export default TimelinePage;

@@ -63,12 +63,12 @@ function LandingPage() {                    // LandingPage
       <div className="kpi-grid">
         
         <div className="kpi-card">
-          <h3>2,430</h3>
+          <h3>47</h3>
           <p>Games Per Season</p>
         </div>
         
         <div className="kpi-card">
-          <h3>162</h3>
+          <h3>47</h3>
           <p>Games Per Team</p>
         </div>
         
@@ -78,7 +78,7 @@ function LandingPage() {                    // LandingPage
         </div>
         
         <div className="kpi-card">
-          <h3>30</h3>
+          <h3>47</h3>
           <p>MLB Teams</p>
         </div>
 

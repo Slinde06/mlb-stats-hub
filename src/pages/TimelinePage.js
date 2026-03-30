@@ -38,7 +38,6 @@ const mockHistoricalData = [
 const TimelinePage = () => { // TimelinePage komponent
 
   const [historicalData, setHistoricalData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [selectedProperty, setSelectedProperty] = useState('attendance');
 
   const properties = [
@@ -54,11 +53,8 @@ const TimelinePage = () => { // TimelinePage komponent
 
 
  useEffect(() => {
-    // Simulate async data load
     const fetchData = async () => {
-      setLoading(true);
       setHistoricalData(mockHistoricalData);
-      setLoading(false);
     };
 
     fetchData();
@@ -72,7 +68,6 @@ const TimelinePage = () => { // TimelinePage komponent
 // useEffect(() => {
 //   const fetchData = async () => {
 //     try {
-//       setLoading(true);
 
 //       const res = await axios.get(
 //         "https://statsapi.mlb.com/api/v1/schedule?sportId=1"
@@ -88,11 +83,9 @@ const TimelinePage = () => { // TimelinePage komponent
 //       }));
 
 //       setHistoricalData(data);
-//       setLoading(false);
 
 //     } catch (error) {
 //       console.error("Error fetching schedule:", error);
-//       setLoading(false);
 //     }
 //   };
 
@@ -151,14 +144,6 @@ const TimelinePage = () => { // TimelinePage komponent
       mode: 'index',
     },
   };
-
-  if (loading) {
-    return (
-      <div className="timeline-container">
-        <div className="loading">Loading MLB analytics...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="timeline-container">

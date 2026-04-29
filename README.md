@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# ⚾ MLB Stats Hub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MLB Stats Hub is a React-based web application that provides real-time Major League Baseball scores, player statistics, and interactive visualizations. The platform allows users to track live games, compare player performance, and explore MLB data in a clean, modern interface.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+* 📊 **Live Game Scores**
+  View real-time MLB scores, including home vs away teams, innings, and game status.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* 👤 **Player Comparison**
+  Compare top MLB players across stats like home runs, batting averages, and strikeouts.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* 📈 **Interactive Visualizations**
+  Charts and timelines that display trends, match results, and performance insights.
 
-### `npm test`
+* ⚡ **Real-Time Updates**
+  Data updates dynamically using an MLB statistics API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🖥️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Frontend:** React.js
+* **Routing:** React Router
+* **Styling:** CSS
+* **Data Source:** MLB Stats API (or your API name)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📂 Project Structure
 
-### `npm run eject`
+```
+/src
+│── /components
+│── /pages
+│── /assets
+│── App.js
+│── index.js
+│── App.css
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ Installation & Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+git clone https://github.com/your-username/mlb-stats-hub.git
+```
 
-## Learn More
+2. Navigate into the project folder:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+cd mlb-stats-hub
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install dependencies:
 
-### Code Splitting
+```
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Start the development server:
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Open in browser:
 
-### Making a Progressive Web App
+```
+http://localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🧭 Navigation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* `/` → Landing Page
+* `/timeline` → Live Scores Timeline
+* `/comparison` → Player Comparison
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧩 Key Component Example
 
-### `npm run build` fails to minify
+The landing page includes:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Hero section with logo and description
+* Navigation buttons using React Router
+* Feature cards for key functionality
+* KPI section showing stats
+
+---
+
+## 🗄️ Database Design (ER Diagram)
+
+Below is the Entity Relationship Diagram used for structuring the data:
+
+![ER Diagram](./src/components/Flowchart%20-%20Page%201%20(1).png)
+
+---
